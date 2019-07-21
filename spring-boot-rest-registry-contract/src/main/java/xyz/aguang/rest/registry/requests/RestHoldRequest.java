@@ -15,8 +15,11 @@ public class RestHoldRequest {
   private List<String> watchingProviderNames;
 
   // Local watching data version.
-  private long watchedVersion;
+  private long previousVersion;
 
   // The client side time while sending hold request.
   private long requestTime;
+
+  // Request timeout in milliseconds.
+  private long requestTimeout;
 }
