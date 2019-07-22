@@ -1,8 +1,8 @@
 package xyz.aguang.rest.registry.entities;
 
-public class RestServer {
+import java.io.Serializable;
 
-  private String id;
+public class RestServer implements Serializable {
 
   private String name;
 
@@ -13,4 +13,44 @@ public class RestServer {
   private int port;
 
   private long startupTime;
+
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public String getZone() {
+    return zone;
+  }
+
+  public void setZone(String zone) {
+    this.zone = zone;
+  }
+
+  public String getAddress() {
+    return address;
+  }
+
+  public void setAddress(String address) {
+    this.address = address;
+  }
+
+  public int getPort() {
+    return port;
+  }
+
+  public void setPort(int port) {
+    this.port = port;
+  }
+
+  public long getStartupTime() {
+    return startupTime;
+  }
+
+  public void setStartupTime(long startupTime) {
+    this.startupTime = startupTime;
+  }
 }

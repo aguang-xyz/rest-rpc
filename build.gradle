@@ -1,48 +1,48 @@
 buildscript {
-  ext {
-    springBootVersion = '2.1.6.RELEASE'
-    spotBugsVersion = '2.0.0'
-  }
-
-  repositories {
-    mavenCentral()
-
-    maven {
-      url 'https://plugins.gradle.org/m2/'
+    ext {
+        springBootVersion = '2.1.6.RELEASE'
+        spotBugsVersion = '2.0.0'
     }
-  }
 
-  dependencies {
-    classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-    classpath("gradle.plugin.com.github.spotbugs:spotbugs-gradle-plugin:${spotBugsVersion}")
-  }
+    repositories {
+        mavenCentral()
+
+        maven {
+            url 'https://plugins.gradle.org/m2/'
+        }
+    }
+
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath("gradle.plugin.com.github.spotbugs:spotbugs-gradle-plugin:${spotBugsVersion}")
+    }
 }
 
 plugins {
-  id 'com.github.sherter.google-java-format' version '0.8'
-  id 'com.palantir.git-version' version '0.12.0-rc2'
+    id 'com.github.sherter.google-java-format' version '0.8'
+    id 'com.palantir.git-version' version '0.12.0-rc2'
 }
 
 allprojects {
 
-  apply plugin: 'java'
-  apply plugin: 'io.spring.dependency-management'
-  apply plugin: "com.github.spotbugs"
+    apply plugin: 'java'
+    apply plugin: 'io.spring.dependency-management'
+    apply plugin: "com.github.spotbugs"
 
-  group = 'xyz.aguang'
-  version = '1.0.0.SNAPSHOT'
+    group = 'xyz.aguang'
+    version = '1.0.0.SNAPSHOT'
 
-  sourceCompatibility = 11
-  targetCompatibility = 11
+    sourceCompatibility = 11
+    targetCompatibility = 11
 
-  repositories {
-    mavenCentral()
-  }
+    repositories {
+        mavenCentral()
+    }
 
-  spotbugs {
+    spotbugs {
 
-    reportLevel = 'high'
-  }
+        reportLevel = 'high'
+    }
 }
 
 project(':spring-boot-rest-registry-contract') {
@@ -50,61 +50,61 @@ project(':spring-boot-rest-registry-contract') {
 
 project(':spring-boot-rest-registry-server') {
 
-  apply plugin: 'org.springframework.boot'
+    apply plugin: 'org.springframework.boot'
 
-  dependencies {
-    compile('org.springframework.boot:spring-boot-starter-web')
-    testCompile('org.springframework.boot:spring-boot-starter-test')
+    dependencies {
+        compile('org.springframework.boot:spring-boot-starter-web')
+        testCompile('org.springframework.boot:spring-boot-starter-test')
 
-    testCompile('org.slf4j:slf4j-nop:1.7.26')
+        testCompile('org.slf4j:slf4j-nop:1.7.26')
 
-    compile(project(':spring-boot-rest-registry-contract'))
-  }
-
-  javadoc.dependsOn check
-
-  bootJar.dependsOn check
-  bootRun.dependsOn check
-
-  println projectDir
-  println name
-
-  task dockerBuild {
-    dependsOn bootJar
-
-    doLast {
-      println project.name
-      println projectDir
-
-      def dockerfile = file("${projectDir}/build/tmp/Dockerfile")
-
-      dockerfile.text  = 'FROM openjdk:11-slim\n'
-      dockerfile.text += 'WORKDIR /workspace\n'
-      dockerfile.text += "COPY build/libs/${project.name}-${version}.jar ./\n"
-      dockerfile.text += "CMD [\"java\", \"-jar\", \"${project.name}-${version}.jar\"]"
-
-      exec {
-        commandLine 'docker', 'build', '-t', "${project.name}:${version}", '-f', "${projectDir}/build/tmp/Dockerfile", "${projectDir}"
-      }
+        compile(project(':spring-boot-rest-registry-contract'))
     }
-  }
 
-  task dockerRun {
-    dependsOn dockerBuild
+    javadoc.dependsOn check
 
-    doLast {
-      exec {
-        commandLine 'docker', 'run', "${project.name}:${version}"
-      }
+    bootJar.dependsOn check
+    bootRun.dependsOn check
+
+    println projectDir
+    println name
+
+    task dockerBuild {
+        dependsOn bootJar
+
+        doLast {
+            println project.name
+            println projectDir
+
+            def dockerfile = file("${projectDir}/build/tmp/Dockerfile")
+
+            dockerfile.text = 'FROM openjdk:11-slim\n'
+            dockerfile.text += 'WORKDIR /workspace\n'
+            dockerfile.text += "COPY build/libs/${project.name}-${version}.jar ./\n"
+            dockerfile.text += "CMD [\"java\", \"-jar\", \"${project.name}-${version}.jar\"]"
+
+            exec {
+                commandLine 'docker', 'build', '-t', "${project.name}:${version}", '-f', "${projectDir}/build/tmp/Dockerfile", "${projectDir}"
+            }
+        }
     }
-  }
+
+    task dockerRun {
+        dependsOn dockerBuild
+
+        doLast {
+            exec {
+                commandLine 'docker', 'run', "${project.name}:${version}"
+            }
+        }
+    }
 }
 
 project(':spring-boot-rest-registry-client') {
 
-  dependencies {
-    
-    compile(project(':spring-boot-rest-registry-contract'))
-  }
+    dependencies {
+
+        compile(project(':spring-boot-rest-registry-contract'))
+    }
 }
 

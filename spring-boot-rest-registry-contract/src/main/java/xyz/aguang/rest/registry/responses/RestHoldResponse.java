@@ -1,14 +1,14 @@
 package xyz.aguang.rest.registry.responses;
 
-import java.util.List;
-import java.util.Map;
 import xyz.aguang.rest.registry.entities.RestServer;
 
-public class RestHoldResponse {
+import java.io.Serializable;
+import java.util.Map;
+import java.util.Set;
 
-  // Watching providers' info.
-  private Map<String, List<RestServer>> changedProviders;
+public class RestHoldResponse implements Serializable {
 
-  // The server side time while generating hold response.
-  private long responseTimestamp;
+  private Map<String, Set<RestServer>> modifiedServers;
+
+  private long lastModifyTime;
 }
