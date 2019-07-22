@@ -66,16 +66,10 @@ project(':spring-boot-rest-registry-server') {
     bootJar.dependsOn check
     bootRun.dependsOn check
 
-    println projectDir
-    println name
-
     task dockerBuild {
         dependsOn bootJar
 
         doLast {
-            println project.name
-            println projectDir
-
             def dockerfile = file("${projectDir}/build/tmp/Dockerfile")
 
             dockerfile.text = 'FROM openjdk:11-slim\n'
@@ -108,3 +102,11 @@ project(':spring-boot-rest-registry-client') {
     }
 }
 
+task doc(type: Javadoc) {
+
+    source getSubprojects().collect { it.sourceSets.main.allJava }
+
+    classpath = files(getSubprojects().collect { it.sourceSets.main.compileClasspath })
+
+    destinationDir = file("${projectDir}/docs/javadocs")
+}
