@@ -6,6 +6,10 @@ This is a spring boot implemented rest registry framework.
 
 * JDK11
 
+## Documents
+
+* [javadoc](https://aguang-xyz.github.io/spring-boot-rest-registry/docs/javadocs/index.html)
+
 ## Gradle Tasks
 
 * javadoc: Generates Javadoc API documentation for the main source code.
