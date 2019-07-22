@@ -15,7 +15,7 @@ public class RestRegistryController {
   @Autowired private RestRegistryService registryService;
 
   @PostMapping("/rest/registry/hold")
-  CompletableFuture<RestRegistryHoldResponse> hold(RestRegistryHoldRequest request) {
+  public CompletableFuture<RestRegistryHoldResponse> hold(RestRegistryHoldRequest request) {
 
     return registryService.hold(request);
   }
