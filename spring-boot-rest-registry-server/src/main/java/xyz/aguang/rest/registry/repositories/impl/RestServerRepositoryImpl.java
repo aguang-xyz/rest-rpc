@@ -1,13 +1,14 @@
 package xyz.aguang.rest.registry.repositories.impl;
 
-import java.util.*;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.function.Consumer;
 import org.springframework.stereotype.Repository;
 import xyz.aguang.rest.registry.entities.RestServer;
 import xyz.aguang.rest.registry.entities.RestServerList;
 import xyz.aguang.rest.registry.repositories.RestServerRepository;
+
+import java.util.*;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.function.Consumer;
 
 @Repository
 public class RestServerRepositoryImpl implements RestServerRepository {

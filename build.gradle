@@ -23,11 +23,13 @@ plugins {
     id 'com.palantir.git-version' version '0.12.0-rc2'
 }
 
+
 allprojects {
 
     apply plugin: 'java'
     apply plugin: 'io.spring.dependency-management'
     apply plugin: "com.github.spotbugs"
+    apply plugin: 'jacoco'
 
     group = 'xyz.aguang'
     version = '1.0.0.SNAPSHOT'
@@ -55,8 +57,6 @@ project(':spring-boot-rest-registry-server') {
     dependencies {
         compile('org.springframework.boot:spring-boot-starter-web')
         testCompile('org.springframework.boot:spring-boot-starter-test')
-
-        testCompile('org.slf4j:slf4j-nop:1.7.26')
 
         compile(project(':spring-boot-rest-registry-contract'))
     }

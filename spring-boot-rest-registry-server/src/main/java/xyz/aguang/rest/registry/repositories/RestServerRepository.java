@@ -1,8 +1,9 @@
 package xyz.aguang.rest.registry.repositories;
 
-import java.util.concurrent.CompletableFuture;
 import xyz.aguang.rest.registry.entities.RestServer;
 import xyz.aguang.rest.registry.entities.RestServerList;
+
+import java.util.concurrent.CompletableFuture;
 
 public interface RestServerRepository {
 
