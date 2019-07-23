@@ -9,7 +9,6 @@ import xyz.aguang.rest.registry.requests.RestRegistryHoldRequest;
 import xyz.aguang.rest.registry.responses.RestRegistryHoldResponse;
 import xyz.aguang.rest.registry.services.RestRegistryService;
 
-import java.util.Comparator;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
@@ -55,9 +54,7 @@ public class RestRegistryServiceImpl implements RestRegistryService {
             .collect(Collectors.toMap(RestServerList::getName, RestServerList::getServers)),
         serverLists
             .parallelStream()
-            .map(RestServerList::getLastModifyTime)
-            .max(Comparator.comparing(x -> x))
-            .orElse(0L));
+            .collect(Collectors.toMap(RestServerList::getName, RestServerList::getLastModifyTime)));
   }
 
   @Override

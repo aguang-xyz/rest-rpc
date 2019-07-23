@@ -10,15 +10,15 @@ public class RestRegistryHoldResponse implements Serializable {
 
   private Map<String, Set<RestServer>> modifiedServers;
 
-  private long lastModifyTime;
+  private Map<String, Long> lastModifyTimes;
 
   public static RestRegistryHoldResponse create(
-      Map<String, Set<RestServer>> modifiedServers, long lastModifyTime) {
+      Map<String, Set<RestServer>> modifiedServers, Map<String, Long> lastModifyTimes) {
 
     RestRegistryHoldResponse response = new RestRegistryHoldResponse();
 
     response.setModifiedServers(modifiedServers);
-    response.setLastModifyTime(lastModifyTime);
+    response.setLastModifyTimes(lastModifyTimes);
 
     return response;
   }
@@ -31,11 +31,11 @@ public class RestRegistryHoldResponse implements Serializable {
     this.modifiedServers = modifiedServers;
   }
 
-  public long getLastModifyTime() {
-    return lastModifyTime;
+  public Map<String, Long> getLastModifyTimes() {
+    return lastModifyTimes;
   }
 
-  public void setLastModifyTime(long lastModifyTime) {
-    this.lastModifyTime = lastModifyTime;
+  public void setLastModifyTimes(Map<String, Long> lastModifyTimes) {
+    this.lastModifyTimes = lastModifyTimes;
   }
 }
