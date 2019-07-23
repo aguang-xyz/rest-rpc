@@ -2,6 +2,11 @@ package xyz.aguang.rest.registry.entities;
 
 import java.io.Serializable;
 
+/**
+ * This class represents a rest server.
+ *
+ * @author Grey King
+ */
 public class RestServer implements Serializable {
 
   private String name;

@@ -104,6 +104,8 @@ project(':spring-boot-rest-registry-client') {
 
 task doc(type: Javadoc) {
 
+    dependsOn build
+    
     source getSubprojects().collect { it.sourceSets.main.allJava }
 
     classpath = files(getSubprojects().collect { it.sourceSets.main.compileClasspath })

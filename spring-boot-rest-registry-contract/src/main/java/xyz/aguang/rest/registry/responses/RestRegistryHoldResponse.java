@@ -1,10 +1,9 @@
 package xyz.aguang.rest.registry.responses;
 
-import xyz.aguang.rest.registry.entities.RestServer;
-
 import java.io.Serializable;
 import java.util.Map;
 import java.util.Set;
+import xyz.aguang.rest.registry.entities.RestServer;
 
 public class RestRegistryHoldResponse implements Serializable {
 
