@@ -4,7 +4,7 @@ This is a spring boot implemented rest registry framework.
 
 ## Status
 
-[![CircleCI](https://circleci.com/gh/aguang-xyz/spring-boot-rest-registry/tree/master.svg?style=svg)](https://circleci.com/gh/aguang-xyz/spring-boot-rest-registry/tree/master)
+[![CircleCI](https://circleci.com/gh/aguang-xyz/spring-boot-rest-registry/tree/master.svg?style=shield)](https://circleci.com/gh/aguang-xyz/spring-boot-rest-registry/tree/master)
 
 ## Requirements
 
