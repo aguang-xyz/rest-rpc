@@ -1,5 +1,7 @@
 # Spring Boot Rest Registry
 
+[![CircleCI](https://circleci.com/gh/aguang-xyz/spring-boot-rest-registry/tree/master.svg?style=svg)](https://circleci.com/gh/aguang-xyz/spring-boot-rest-registry/tree/master)
+
 This is a spring boot implemented rest registry framework.
 
 ## Requirements
