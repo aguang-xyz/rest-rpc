@@ -3,7 +3,7 @@ package xyz.aguang.rest.registry.requests;
 import xyz.aguang.rest.registry.entities.RestServer;
 
 import java.io.Serializable;
-import java.util.Set;
+import java.util.Map;
 
 public class RestRegistryHoldRequest implements Serializable {
 
@@ -11,9 +11,7 @@ public class RestRegistryHoldRequest implements Serializable {
 
   private boolean active;
 
-  private Set<String> watchingNames;
-
-  private long previousModifyTime;
+  private Map<String, Long> previousModifyTimes;
 
   private long watchTimeout;
 
@@ -33,20 +31,12 @@ public class RestRegistryHoldRequest implements Serializable {
     this.active = active;
   }
 
-  public Set<String> getWatchingNames() {
-    return watchingNames;
+  public Map<String, Long> getPreviousModifyTimes() {
+    return previousModifyTimes;
   }
 
-  public void setWatchingNames(Set<String> watchingNames) {
-    this.watchingNames = watchingNames;
-  }
-
-  public long getPreviousModifyTime() {
-    return previousModifyTime;
-  }
-
-  public void setPreviousModifyTime(long previousModifyTime) {
-    this.previousModifyTime = previousModifyTime;
+  public void setPreviousModifyTimes(Map<String, Long> previousModifyTimes) {
+    this.previousModifyTimes = previousModifyTimes;
   }
 
   public long getWatchTimeout() {

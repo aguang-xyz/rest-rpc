@@ -10,6 +10,7 @@ import xyz.aguang.rest.registry.responses.RestRegistryHoldResponse;
 import xyz.aguang.rest.registry.services.RestRegistryService;
 
 import java.util.Comparator;
+import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeUnit;
@@ -26,21 +27,24 @@ public class RestRegistryServiceImpl implements RestRegistryService {
   }
 
   private CompletableFuture<Object> doProcessWatch(
-      Set<String> watchingNames, long previousModifyTime, long timeout) {
+      Map<String, Long> previousModifyTime, long timeout) {
 
     return CompletableFuture.anyOf(
-            watchingNames
+            previousModifyTime
+                .keySet()
                 .parallelStream()
-                .map(watchingName -> serverRepository.get(watchingName, previousModifyTime))
+                .map(
+                    watchingName ->
+                        serverRepository.get(watchingName, previousModifyTime.get(watchingName)))
                 .toArray(CompletableFuture[]::new))
         .completeOnTimeout(new Object(), timeout, TimeUnit.MILLISECONDS);
   }
 
-  private RestRegistryHoldResponse buildHoldResponse(
-      Set<String> watchingNames, long previousModifyTime) {
+  private RestRegistryHoldResponse buildHoldResponse(Map<String, Long> previousModifyTimes) {
 
     Set<RestServerList> serverLists =
-        watchingNames
+        previousModifyTimes
+            .keySet()
             .parallelStream()
             .map(watchingName -> serverRepository.get(watchingName))
             .collect(Collectors.toSet());
@@ -61,11 +65,7 @@ public class RestRegistryServiceImpl implements RestRegistryService {
 
     return CompletableFuture.allOf(
             doProcessActive(request.getFrom(), request.isActive()),
-            doProcessWatch(
-                request.getWatchingNames(),
-                request.getPreviousModifyTime(),
-                request.getWatchTimeout()))
-        .thenApply(
-            x -> buildHoldResponse(request.getWatchingNames(), request.getPreviousModifyTime()));
+            doProcessWatch(request.getPreviousModifyTimes(), request.getWatchTimeout()))
+        .thenApply(x -> buildHoldResponse(request.getPreviousModifyTimes()));
   }
 }
