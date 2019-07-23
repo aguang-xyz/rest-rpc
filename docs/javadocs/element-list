@@ -1,9 +1,9 @@
+xyz.aguang.rest.registry
 xyz.aguang.rest.registry.controllers
 xyz.aguang.rest.registry.entities
 xyz.aguang.rest.registry.repositories
 xyz.aguang.rest.registry.repositories.impl
 xyz.aguang.rest.registry.requests
 xyz.aguang.rest.registry.responses
-xyz.aguang.rest.registry.server
 xyz.aguang.rest.registry.services
 xyz.aguang.rest.registry.services.impl
