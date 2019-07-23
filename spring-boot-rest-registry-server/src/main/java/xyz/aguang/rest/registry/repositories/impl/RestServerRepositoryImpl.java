@@ -113,6 +113,15 @@ public class RestServerRepositoryImpl implements RestServerRepository {
 
     final RestServerList serverList = get(name);
 
+    /**
+     * This is an optimization to reduce mutex locks. If the last modify time of server list is
+     * already later then previous modify time. The current server list can be returned directly.
+     */
+    if (serverList.getLastModifyTime() > previousModifyTime) {
+
+      return CompletableFuture.completedFuture(serverList);
+    }
+
     synchronized (serverList) {
       if (serverList.getLastModifyTime() > previousModifyTime) {
 
