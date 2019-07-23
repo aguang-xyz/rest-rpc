@@ -111,4 +111,9 @@ task doc(type: Javadoc) {
     classpath = files(getSubprojects().collect { it.sourceSets.main.compileClasspath })
 
     destinationDir = file("${projectDir}/docs/javadocs")
+
+    options {
+
+        noTimestamp = true
+    }
 }
