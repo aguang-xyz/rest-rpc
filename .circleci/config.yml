@@ -17,11 +17,11 @@ jobs:
           keys:
             - v1-dependencies-{{ .Branch }}-{{ .Revision }}
 
-      - run: ./gradle dependencies
+      - run: ./gradlew dependencies
 
       - save_cache:
           paths:
-            - ~/.gradle
+            - ~/.gradlew
           key: v1-dependencies-{{ .Branch }}-{{ .Revision }}
 
       - run: ./gradle clean check
