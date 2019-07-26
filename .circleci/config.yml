@@ -24,9 +24,7 @@ jobs:
             - ~/.gradle
           key: v1-dependencies-{{ .Branch }}-{{ .Revision }}
 
-      - run: gradle check
-
-      - run: gradle test
+      - run: gradle clean check
 
       - run:
           name: Save test results
