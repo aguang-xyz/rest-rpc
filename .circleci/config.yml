@@ -15,16 +15,16 @@ jobs:
 
       - restore_cache:
           keys:
-            - v1-dependencies-{{ .Branch }}-{{ .Revision }}
+            - v1-dependencies-{{ checksum "build.gradle" }}
 
       - run: ./gradlew dependencies
 
       - save_cache:
           paths:
-            - ~/.gradlew
-          key: v1-dependencies-{{ .Branch }}-{{ .Revision }}
+            - ~/.gradle
+          key: v1-dependencies-{{ checksum "build.gradle" }}
 
-      - run: ./gradle clean check
+      - run: ./gradlew clean check
 
       - run:
           name: Save test results
