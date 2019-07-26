@@ -13,4 +13,10 @@ public class RestRegistryServerTest {
 
   @Test
   public void testNothing() {}
+
+  @Test
+  public void notSuccess() {
+
+    throw new RuntimeException("aha");
+  }
 }
