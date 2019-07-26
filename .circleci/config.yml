@@ -17,14 +17,14 @@ jobs:
           keys:
             - v1-dependencies-{{ .Branch }}-{{ .Revision }}
 
-      - run: gradle dependencies
+      - run: ./gradle dependencies
 
       - save_cache:
           paths:
             - ~/.gradle
           key: v1-dependencies-{{ .Branch }}-{{ .Revision }}
 
-      - run: gradle clean check
+      - run: ./gradle clean check
 
       - run:
           name: Save test results
