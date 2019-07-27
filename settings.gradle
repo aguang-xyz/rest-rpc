@@ -1,5 +1,5 @@
 rootProject.name = java.nio.file.Paths.get(System.getProperty('user.dir')).getFileName()
 
-include 'spring-boot-rest-registry-contract'
-include 'spring-boot-rest-registry-server'
-include 'spring-boot-rest-registry-client'
+include 'rest-rpc-contract'
+include 'rest-rpc-registry'
+include 'rest-rpc-client'

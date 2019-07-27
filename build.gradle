@@ -47,10 +47,10 @@ allprojects {
     }
 }
 
-project(':spring-boot-rest-registry-contract') {
+project(':rest-rpc-contract') {
 }
 
-project(':spring-boot-rest-registry-server') {
+project(':rest-rpc-registry') {
 
     apply plugin: 'org.springframework.boot'
 
@@ -58,7 +58,7 @@ project(':spring-boot-rest-registry-server') {
         compile('org.springframework.boot:spring-boot-starter-web')
         testCompile('org.springframework.boot:spring-boot-starter-test')
 
-        compile(project(':spring-boot-rest-registry-contract'))
+        compile(project(':rest-rpc-contract'))
     }
 
     javadoc.dependsOn check
@@ -94,11 +94,11 @@ project(':spring-boot-rest-registry-server') {
     }
 }
 
-project(':spring-boot-rest-registry-client') {
+project(':rest-rpc-client') {
 
     dependencies {
 
-        compile(project(':spring-boot-rest-registry-contract'))
+        compile(project(':rest-rpc-contract'))
     }
 }
 
