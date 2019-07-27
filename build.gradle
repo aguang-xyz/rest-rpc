@@ -43,6 +43,24 @@ allprojects {
 
         reportLevel = 'high'
     }
+
+    spotbugsMain {
+
+        reports {
+
+            xml {
+
+                enabled false
+            }
+
+            html {
+
+                enabled true
+
+                destination file("build/reports/spotbugs/${project.name}.html")
+            }
+        }
+    }
 }
 
 project(':rest-rpc-contract') {

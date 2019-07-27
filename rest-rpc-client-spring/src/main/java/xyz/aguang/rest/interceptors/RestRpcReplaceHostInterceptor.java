@@ -16,6 +16,6 @@ public class RestRpcReplaceHostInterceptor implements ClientHttpRequestIntercept
 
     // TODO
 
-    return null;
+    return execution.execute(request, body);
   }
 }
