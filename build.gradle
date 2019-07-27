@@ -23,11 +23,9 @@ plugins {
     id 'com.palantir.git-version' version '0.12.0-rc2'
 }
 
-
 allprojects {
 
     apply plugin: 'java'
-    apply plugin: 'io.spring.dependency-management'
     apply plugin: "com.github.spotbugs"
     apply plugin: 'jacoco'
 
@@ -55,8 +53,8 @@ project(':rest-rpc-registry') {
     apply plugin: 'org.springframework.boot'
 
     dependencies {
-        compile('org.springframework.boot:spring-boot-starter-web')
-        testCompile('org.springframework.boot:spring-boot-starter-test')
+        compile("org.springframework.boot:spring-boot-starter-web:${springBootVersion}")
+        testCompile("org.springframework.boot:spring-boot-starter-test:${springBootVersion}")
 
         compile(project(':rest-rpc-contract'))
     }
@@ -94,11 +92,23 @@ project(':rest-rpc-registry') {
     }
 }
 
-project(':rest-rpc-client') {
+project(':rest-rpc-client-java') {
 
     dependencies {
+        compile('com.alibaba:fastjson:1.2.58')
+        compile('org.slf4j:slf4j-api:1.7.26')
 
         compile(project(':rest-rpc-contract'))
+    }
+}
+
+project(':rest-rpc-client-spring') {
+
+    dependencies {
+        compile("org.springframework.boot:spring-boot-starter-web:${springBootVersion}")
+        testCompile("org.springframework.boot:spring-boot-starter-test:${springBootVersion}")
+
+        compile(project(':rest-rpc-client-java'))
     }
 }
 

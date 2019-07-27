@@ -2,4 +2,5 @@ rootProject.name = java.nio.file.Paths.get(System.getProperty('user.dir')).getFi
 
 include 'rest-rpc-contract'
 include 'rest-rpc-registry'
-include 'rest-rpc-client'
+include 'rest-rpc-client-java'
+include 'rest-rpc-client-spring'
