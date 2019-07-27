@@ -1,10 +1,10 @@
-# Spring Boot Rest Registry
+# Rest RPC
 
-This is a spring boot implemented rest registry framework.
+This is a spring boot implemented rest discovery framework.
 
 ## Status
 
-[![CircleCI](https://circleci.com/gh/aguang-xyz/spring-boot-rest-registry/tree/master.svg?style=shield)](https://circleci.com/gh/aguang-xyz/spring-boot-rest-registry/tree/master)
+[![CircleCI](https://circleci.com/gh/aguang-xyz/rest-rpc/tree/master.svg?style=shield)](https://circleci.com/gh/aguang-xyz/rest-rpc/tree/master)
 
 ## Requirements
 
@@ -12,7 +12,7 @@ This is a spring boot implemented rest registry framework.
 
 ## Documents
 
-* [javadoc](https://aguang-xyz.github.io/spring-boot-rest-registry/docs/javadocs/index.html)
+* [javadoc](https://aguang-xyz.github.io/rest-rpc/docs/javadocs/index.html)
 
 ## Gradle Tasks
 
